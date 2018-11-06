@@ -66,7 +66,7 @@ class NavbarComponent extends Component {
 
 // state
 const mapStateToProps = state => ({
-    user: state.user.user.data
+    user: state.user
     
     
 })
