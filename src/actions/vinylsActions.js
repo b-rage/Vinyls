@@ -1,5 +1,4 @@
 import { SHOW_VINYLS} from './types'
-import axios from 'axios'
 import logic from '../logic'
 
 export const showVinyls = () => async dispatch => {

@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+// json-server --watch vinyls.json --port 5000
+
 
 const logic = {
 
@@ -25,7 +27,7 @@ const logic = {
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
             },
-            body: JSON.stringify({ email, username, password, bio })
+            body: JSON.stringify({ email, username, password })
         })
             .then(res => res.json())
             .then(res => {
@@ -51,10 +53,11 @@ const logic = {
             .then(res => {
                 if (res.error) throw Error(res.error)
 
-                const { id, token } = res.data
+                const { id, token, username } = res.data
 
                 this._userId = id
                 this._token = token
+                this._username = username
 
                 sessionStorage.setItem('userId', id)
                 sessionStorage.setItem('token', token)
@@ -77,7 +80,19 @@ const logic = {
 
     getVinyls() {
         const res = axios.get('http://localhost:5000/vinyls')
+        console.log(res)
         return res
+    },
+
+    retrieveCurrentUser() {
+        const AuthStr = 'Bearer '.concat(this._token)
+        const user = axios.get(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, 
+                                { headers: { Authorization: AuthStr } })
+
+        console.log(user)
+        
+        return user
+        
     }
     
     

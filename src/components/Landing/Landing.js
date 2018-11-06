@@ -5,17 +5,17 @@ import  './landing.css'
 
 function Landing(props) {
 
-    return <section className="container-landing">
+    return <section className='container-landing'>
         
-        <div className="container-landing-right">
+        <div className='container-landing-right'>
 
-            <h1 className="landing-title">Vinyl</h1>
+            <h1 className='landing-title'>Vinyls</h1>
 
-            <Link to={'./register'} ><Button color="unique">Register</Button></Link>
+            <Link to={'./register'} ><Button color='black darken-4'>Register</Button></Link>
             
-            {/* <Button color="unique" onClick={props.onRegisterClick}>Register</Button> */}
+            {/* <Button color="black darken-4" onClick={props.onRegisterClick}>Register</Button> */}
 
-            <Link to={'./login'}><Button color="unique">Login</Button> </Link>
+            <Link to={'./login'}><Button color='black darken-4'>Login</Button> </Link>
 
             {/* <Button color="unique" onClick={props.onLoginClick}>Login</Button>   */}   
 

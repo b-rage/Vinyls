@@ -3,7 +3,7 @@ import { Button, Input } from 'mdbreact'
 import  './register.css'
 
 class Register extends Component {
-    state = { email: '', username: '', password: '', bio:'' }
+    state = { email: '', username: '', password: '' }
 
     handleEmailChange = event => {
         const email = event.target.value
@@ -23,19 +23,13 @@ class Register extends Component {
         this.setState({ password })
     }
 
-    handleBioChange = event => {
-        const bio = event.target.value
-
-        this.setState({ bio })
-    }
-
 
     handleSubmit = event => {
         event.preventDefault()
 
-        const {  email, username, password, bio } = this.state
+        const {  email, username, password } = this.state
 
-        this.props.onRegister( email, username, password, bio)
+        this.props.onRegister( email, username, password )
     }
 
     render() {
@@ -44,19 +38,17 @@ class Register extends Component {
         <form onSubmit={this.handleSubmit}>
 
 
-            <Input type="text" label="Email *" onChange={this.handleEmailChange} />
+            <Input type="text" label="Email" onChange={this.handleEmailChange} />
 
-            <Input type="text" label="Username *" onChange={this.handleUsernameChange} />
+            <Input type="text" label="Username" onChange={this.handleUsernameChange} />
 
-            <Input type="password" label="Password *" onChange={this.handlePasswordChange} />
-
-            <Input type="text" label="Bio" onChange={this.handleBioChange} />
-
-            <p>*required</p>
+            <Input type="password" label="Password" onChange={this.handlePasswordChange} />
 
             <div className="button-container">
-            
-            <Button color="unique" type="submit">Register</Button> 
+         
+            <Button color="black" type="submit">Register</Button> 
+            <br></br><br></br>
+            <a className='back' href="#" onClick={this.props.onGoBack}>Back</a>
             </div>
         </form>
         </div>

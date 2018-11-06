@@ -5,7 +5,7 @@ import VinylListItem from '../VinylListItem/VinylListItem'
 import { connect } from 'react-redux'
 import { showVinyls } from '../../actions/vinylsActions'
 
-class Vinyls extends Component {
+class VinylsList extends Component {
     
     componentDidMount() {
         this.props.showVinyls()
@@ -20,7 +20,7 @@ class Vinyls extends Component {
                 <h2 className='text-center my-5'>Vinyls</h2>
                 <div className='row justify-content-center'>
                     <div className='col-md-8'>
-                        <ul>
+                        <ul className='list-group-flush'>
                         {vinyls.map(vinyl => (
                             <VinylListItem key={vinyl.id} info={vinyl}/>
                         ))}
@@ -38,4 +38,4 @@ const mapStateToProps = state => ({
 })
 
  
-export default connect(mapStateToProps, { showVinyls })(Vinyls)
+export default connect(mapStateToProps, { showVinyls })(VinylsList)

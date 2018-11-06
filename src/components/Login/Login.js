@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Button, Input } from "mdbreact"
+import { Button, Input } from 'mdbreact'
 import  './login.css'
 
 class Login extends Component {
@@ -18,16 +18,15 @@ class Login extends Component {
     }
 
     handleSubmit = event => {
-
         event.preventDefault()
 
         const { username, password } = this.state
 
         this.props.onLogin(username, password)
-        
     }
 
     render() {
+
         return <div className="login-container">
 
         <form onSubmit={this.handleSubmit}>
@@ -35,10 +34,12 @@ class Login extends Component {
             <Input label="Username" type="text" onChange={this.handleUsernameChange} />
 
             <Input label="Password" type="password" onChange={this.handlePasswordChange} />
-
-            <div className="button-container">
-            <Button type="submit"  color="unique">Login</Button> 
             
+            <div className="button-container">
+           
+            <Button color="black" type="submit">Login</Button> 
+            <br></br><br></br>
+            <a className='back' href="#" onClick={this.props.onGoBack}>Back</a>
             </div>
             
         </form>

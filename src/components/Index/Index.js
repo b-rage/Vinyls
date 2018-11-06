@@ -1,13 +1,25 @@
 import React, { Component } from 'react'
-import Vinyls from '../Vinyls/Vinyls'
+import VinylsList from '../VinylsList/VinylsList'
+
+// Redux
+import { connect } from 'react-redux'
+import { getCurrentUser } from '../../actions/usersActions'
 
 class Index extends Component {
-    state = {  }
+    componentDidMount() {
+        this.props.getCurrentUser()
+    }
     render() { 
         return ( 
-            <Vinyls></Vinyls>
+            <VinylsList></VinylsList>
          )
     }
 }
+
+// state
+const mapStateToProps = state => ({
+    user: state.users
+})
+
  
-export default Index
+export default connect(mapStateToProps, { getCurrentUser })(Index)

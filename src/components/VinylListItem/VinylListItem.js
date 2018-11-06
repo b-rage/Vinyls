@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class Vinyl extends Component {
     
     render() { 
-        const { id, nombre, precio } = this.props.info
+        const { id, nombre } = this.props.info
         return ( 
             <li className='list-group-item'>{nombre}</li>
          )

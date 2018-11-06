@@ -52,6 +52,12 @@ class App extends Component {
         logic.logout()
         this.props.history.push('/')
     }
+
+    handleGoBack = () =>  {
+        this.setState({error: null})
+        this.props.history.push('/')
+    }
+    
     
 
     render() { 
@@ -63,9 +69,9 @@ class App extends Component {
                         {logic.loggedIn && <Navbar onLogout={this.handleLogoutClick}></Navbar>}
 
                        <Route exact path="/" render={() => !logic.loggedIn ? <Landing onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick}/> : <Redirect to="/index" />} /> 
-                       <Route path="/register" render={() => !logic.loggedIn ? <Register onRegister={this.handleRegister}  /> : <Redirect to="/index" />} /> 
+                       <Route path="/register" render={() => !logic.loggedIn ? <Register onRegister={this.handleRegister} onGoBack={this.handleGoBack}  /> : <Redirect to="/index" />} /> 
+                        <Route path="/login" render={() => !logic.loggedIn ? <Login onLogin={this.handleLogin} onGoBack={this.handleGoBack}  /> : <Redirect to="/index" />} /> 
                         {error && <Error message={error} />}
-                        <Route path="/login" render={() => !logic.loggedIn ? <Login onLogin={this.handleLogin}  /> : <Redirect to="/index" />} /> 
                         <Route path="/index" render={() => logic.loggedIn ? <Index onLogin={this.handleLogin}  /> : <Redirect to="/index" />}/>                      
                     </div> 
             </Provider>
