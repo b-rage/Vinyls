@@ -11,22 +11,23 @@ class NavbarComponent extends Component {
 
     state = {
         collapse: false,
-        isWideEnough: false,
+        isWideEnough: false
     }
 
 
     componentDidMount() {
     this.props.getCurrentUser()
-    console.log(this.props.user)
     }
+
 
    onClickNav = () => this.setState({ collapse: !this.state.collapse })
 
-
+  
     
    render() {
-       const { username }= this.props
-
+       const { profile } = this.props 
+       
+    
        return (
            <Navbar color="black darken-4" dark expand="md"  scrolling>
 
@@ -44,9 +45,9 @@ class NavbarComponent extends Component {
 
                        <NavItem >
 
-                           <a className="nav-link waves-effect waves-light" onClick = { this.goToFavourites } ><i className="fa fa-star"></i>{username}</a>
+                           <a className="nav-link waves-effect waves-light" onClick = { this.goToFavourites } ><i className="fa fa-star"></i>{JSON.stringify(profile)}</a>
 
-                       </NavItem>
+                       </NavItem >
 
                        <NavItem>
 
@@ -66,7 +67,7 @@ class NavbarComponent extends Component {
 
 // state
 const mapStateToProps = state => ({
-    user: state.user
+    profile: state.user.profile.data
     
     
 })

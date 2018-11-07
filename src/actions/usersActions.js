@@ -6,5 +6,7 @@ export const getCurrentUser = () => async dispatch => {
      dispatch({
           type: GET_CURRENT_USER,
           payload: res.data
+          
      })
 }
+

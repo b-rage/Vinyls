@@ -4,7 +4,7 @@ import logic from './logic'
 import Index from './components/Index/Index'
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
-import Navbar from './components/Navbar/Navbar'
+import NavbarComponent from './components/NavbarComponent/NavbarComponent'
 import Landing from './components/Landing/Landing'
 import Error from './components/Error/Error'
 
@@ -66,7 +66,7 @@ class App extends Component {
 
         return ( <Provider store={ store }>
                     <div>
-                        {logic.loggedIn && <Navbar onLogout={this.handleLogoutClick}></Navbar>}
+                        {logic.loggedIn && <NavbarComponent onLogout={this.handleLogoutClick}></NavbarComponent>}
 
                        <Route exact path="/" render={() => !logic.loggedIn ? <Landing onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick}/> : <Redirect to="/index" />} /> 
                        <Route path="/register" render={() => !logic.loggedIn ? <Register onRegister={this.handleRegister} onGoBack={this.handleGoBack}  /> : <Redirect to="/index" />} /> 

@@ -18,7 +18,7 @@ class Index extends Component {
 
 // state
 const mapStateToProps = state => ({
-    user: state.users
+    profile: state.profile
 })
 
  

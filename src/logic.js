@@ -9,7 +9,7 @@ const logic = {
     _token: sessionStorage.getItem('token') || null,
 
 
-    registerUser(email, username, password, bio) {
+    registerUser(email, username, password) {
 
         if (!email.trim()) throw Error('email is empty or blank')
         if (!username.trim()) throw Error('username is empty or blank')
@@ -80,20 +80,22 @@ const logic = {
 
     getVinyls() {
         const res = axios.get('http://localhost:5000/vinyls')
-        console.log(res)
+       
         return res
     },
 
     retrieveCurrentUser() {
         const AuthStr = 'Bearer '.concat(this._token)
-        const user = axios.get(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, 
+        const profile = axios.get(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, 
                                 { headers: { Authorization: AuthStr } })
 
-        console.log(user)
         
-        return user
+        return profile
+        
         
     }
+
+
     
     
 }

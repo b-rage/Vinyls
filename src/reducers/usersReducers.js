@@ -1,7 +1,7 @@
 import {GET_CURRENT_USER} from '../actions/types' 
 
 const initialState = {
-    user: {}
+    profile: {}
 }
 
 export default function(state = initialState, action) {
@@ -9,7 +9,7 @@ export default function(state = initialState, action) {
          case GET_CURRENT_USER:
               return {
                    ...state,
-                   user: action.payload
+                   profile: action.payload
               }
          default:
               return state
