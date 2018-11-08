@@ -25,7 +25,7 @@ class NavbarComponent extends Component {
   
     
    render() {
-       const { profile } = this.props 
+       const { username } = this.props 
        
     
        return (
@@ -45,7 +45,7 @@ class NavbarComponent extends Component {
 
                        <NavItem >
 
-                           <a className="nav-link waves-effect waves-light" onClick = { this.goToFavourites } ><i className="fa fa-star"></i>{JSON.stringify(profile)}</a>
+                           <a className="nav-link waves-effect waves-light" onClick = { this.goToFavourites } ><i className="fa fa-star"></i>{username}</a>
 
                        </NavItem >
 
@@ -66,12 +66,17 @@ class NavbarComponent extends Component {
 }
 
 // state
-const mapStateToProps = state => ({
-    profile: state.user.profile.data
-    
-    
-})
+const mapStateToProps = state => {
 
+  if(state.user.profile.data){
+    return {
+      username: state.user.profile.data.username}
+    
+  }
+    
+}
+  
+    
  
 export default connect(mapStateToProps, { getCurrentUser })(NavbarComponent)
 
