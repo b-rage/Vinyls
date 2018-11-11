@@ -27,7 +27,7 @@ class App extends Component {
         try {
             logic.registerUser(email, username, password, bio)
                 .then(() => {
-                    this.setState({ error: null }, () => this.props.history.push('/index'))
+                    this.setState({ error: null }, () => this.props.history.push('/login'))
                 })
                 .catch(err => this.setState({ error: err.message }))
         } catch (err) {
