@@ -1,7 +1,7 @@
 import {GET_CURRENT_USER} from '../actions/types' 
 
 const initialState = {
-    profile: {}
+    profile: []
 }
 
 export default function(state = initialState, action) {
