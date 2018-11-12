@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import VinylListItem from '../VinylListItem/VinylListItem'
+import './vinylList.css'
 
 // Redux
 import { connect } from 'react-redux'
@@ -18,15 +19,14 @@ class VinylsList extends Component {
         return ( 
             <React.Fragment>
                 <h2 className='text-center my-5'>Vinyls</h2>
-                <div className='row justify-content-center'>
-                    <div className='col-md-8'>
+                <div className='vinyls-list'>
                         <ul className='list-group-flush'>
                         {vinyls.map(vinyl => (
                             <VinylListItem key={vinyl.id} info={vinyl}/>
                         ))}
                         </ul>
-                    </div>
-                </div>
+                 </div>
+               
             </React.Fragment>
          )
     }

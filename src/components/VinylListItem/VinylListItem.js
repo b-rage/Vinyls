@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import './vinylListItem.css'
 
 class Vinyl extends Component {
     
     render() { 
-        const { id, nombre } = this.props.info
+        const { name, artist } = this.props.info
         return ( 
-            <li className='list-group-item'>{nombre}</li>
+            <li className='list-group-item'><span className='vinyl-name' >{name}</span> - {artist}</li>
          )
     }
 }

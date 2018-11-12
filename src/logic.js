@@ -3,13 +3,18 @@ import axios from 'axios'
 // json-server --watch vinyls.json --port 5000
 
 
+
 const logic = {
 
     _userId: sessionStorage.getItem('userId') || null,
     _token: sessionStorage.getItem('token') || null,
 
+    url: 'http://localhost:5000/api',
 
     registerUser(email, username, password) {
+
+        console.log(email, username, password);
+        
 
         if (!email.trim()) throw Error('email is empty or blank')
         if (!username.trim()) throw Error('username is empty or blank')
@@ -20,9 +25,9 @@ const logic = {
         if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
         if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
         
+        
 
-
-        return fetch('https://skylabcoders.herokuapp.com/api/user', {
+        return fetch(`${this.url}/users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
@@ -42,7 +47,7 @@ const logic = {
         if (!username.trim()) throw Error('username is empty or blank')
         if (!password.trim()) throw Error('password is empty or blank')
 
-        return fetch('https://skylabcoders.herokuapp.com/api/auth', {
+        return fetch(`${this.url}/auth`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
@@ -79,20 +84,18 @@ const logic = {
     },
 
     getVinyls() {
-        const res = axios.get('http://localhost:5000/vinyls')
+        const res = axios.get('http://localhost:5500/vinyls')
        
         return res
     },
 
     retrieveCurrentUser() {
         const AuthStr = 'Bearer '.concat(this._token)
-        const profile = axios.get(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, 
+        const profile = axios.get(`${this.url}/users/${this._userId}`, 
                                 { headers: { Authorization: AuthStr } })
-
         
         return profile
-        
-        
+                
     }
 
 
