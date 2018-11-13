@@ -4,9 +4,9 @@ import './vinylListItem.css'
 class Vinyl extends Component {
     
     render() { 
-        const { name, artist } = this.props.info
+        const { title, artist } = this.props.info
         return ( 
-            <li className='list-group-item'><span className='vinyl-name' >{name}</span> - {artist}</li>
+            <li className='list-group-item'><span className='title' >{title}</span> - <span className='artist'>{artist}</span></li>
          )
     }
 }

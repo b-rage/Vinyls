@@ -2,7 +2,7 @@
   "vinyls": [
     {
       "id": "1",
-      "name": "Help",
+      "title": "Help",
       "artist":"The Beatles",
       "year":"1965",
       "info":"japan cover",
@@ -12,7 +12,7 @@
     },
     {
       "id": "2",
-      "name": "Nevermind",
+      "title": "Nevermind",
       "artist":"Nirvana",
       "year":"1991",
       "info":"original cover",
@@ -22,7 +22,7 @@
     },
     {
       "id": "3",
-      "name": "Ten",
+      "title": "Ten",
       "artist":"pearl Jam",
       "year":"1991",
       "info":"fix cover",

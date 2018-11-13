@@ -5,7 +5,7 @@ export const getCurrentUser = () => async dispatch => {
      const res = await logic.retrieveCurrentUser()
      dispatch({
           type: GET_CURRENT_USER,
-          payload: res.data
+          payload: res
           
      })
 }
