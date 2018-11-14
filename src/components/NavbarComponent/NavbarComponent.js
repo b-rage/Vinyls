@@ -68,11 +68,12 @@ class NavbarComponent extends Component {
 // state
 const mapStateToProps = state => {
 
-  if(state.user.profile.data){
-    return {
-      username: state.user.profile.data.username}
-    
-  }
+    let result = {}
+    if(state.user.profile.data){
+    result =  {
+      username: state.user.profile.data.username}   
+    }
+  return result
     
 }
   
