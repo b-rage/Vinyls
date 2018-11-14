@@ -1,31 +1,38 @@
 import React, { Component } from 'react'
 import { Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem } from 'mdbreact'
+import logic from '../../logic'
 import { withRouter } from 'react-router-dom'
 
 // Redux
-import { connect } from 'react-redux'
-import { getCurrentUser } from '../../actions/usersActions'
+// import { connect } from 'react-redux'
+// import { getCurrentUser } from '../../actions/usersActions'
 
 
 class NavbarComponent extends Component {
 
-    state = {
-        collapse: false,
-        isWideEnough: false
-    }
+    state = {collapse: false, isWideEnough: false, username: '', imgProfileUrl: null, bio: ''}
 
 
     componentDidMount() {
-    this.props.getCurrentUser()
+        try {       
+            
+            logic.getCurrentUser()
+            .then(user => { this.setState({ username: user.username, imgProfileUrl: user.imgProfileUrl, bio: user.bio  }) })
+            .catch(err => this.setState({ error: err.message }))
+        } catch (err) {
+            this.setState({ error: err.message })
+        }
     }
 
 
    onClickNav = () => this.setState({ collapse: !this.state.collapse })
 
-  
+   goToProfile = () => this.props.history.push('/profile') 
+
+   goToIndex = () => this.props.history.push('/index') 
     
    render() {
-       const { username } = this.props 
+       const { username } = this.state
        
     
        return (
@@ -33,7 +40,7 @@ class NavbarComponent extends Component {
 
                <NavbarBrand href="/index">
 
-                   <strong>Vinyls</strong>
+                   <a onClick = { this.goToIndex } ><strong>Vinyls</strong></a>
 
                </NavbarBrand>
 
@@ -45,7 +52,7 @@ class NavbarComponent extends Component {
 
                        <NavItem >
 
-                           <a className="nav-link waves-effect waves-light" onClick = { this.goToFavourites } ><i className="fa fa-star"></i>{username}</a>
+                           <a className="nav-link waves-effect waves-light" onClick = { this.goToProfile } ><i className="fa fa-star"></i>{username}</a>
 
                        </NavItem >
 
@@ -66,18 +73,18 @@ class NavbarComponent extends Component {
 }
 
 // state
-const mapStateToProps = state => {
+// const mapStateToProps = state => {
 
-    let result = {}
-    if(state.user.profile.data){
-    result =  {
-      username: state.user.profile.data.username}   
-    }
-  return result
+//     let result = {}
+//     if(state.user.profile.data){
+//     result =  {
+//       username: state.user.profile.data.username}   
+//     }
+//   return result
     
-}
+// }
   
     
  
-export default connect(mapStateToProps, { getCurrentUser })(NavbarComponent)
+export default withRouter(NavbarComponent)
 
