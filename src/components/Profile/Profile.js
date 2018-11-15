@@ -19,14 +19,14 @@ class Profile extends Component {
     }
 
 
-    handleEditClick = () => this.props.history.push('/edit') 
+    handleEditClick = () => this.props.history.push('/edit-profile') 
 
 
     render() {
 
         return<div className='profile-container'>
 
-            <img className='profile-img' src={this.state.imgProfileUrl ? this.state.imgProfileUrl : './img/vinyl-512.png'} ></img>
+            <img className='profile-img' src={this.state.imgProfileUrl ? this.state.imgProfileUrl : './img/icon-profile.png'} ></img>
             <br></br>
 
                 <p className='profile-info'>username: {this.state.username}</p>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Redirect } from 'react-router-dom'
 import logic from './logic'
+import Event from './plugins/bus'
 import Index from './components/Index/Index'
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
@@ -29,6 +30,7 @@ class App extends Component {
             logic.modifyUser( username,  newPassword, password, imgProfileUrl, bio )
                 .then(() => {
                     this.setState({ error: null }, () => this.props.history.push('/profile'))
+                    Event.$emit('change-profile-img', {image: imgProfileUrl})
                 })
                 .catch(err => this.setState({ error: err.message }))
         } catch (err) {
@@ -88,7 +90,7 @@ class App extends Component {
                         {error && <Error message={error} />}
                         <Route path="/index" render={() => logic.loggedIn ? <Index onLogin={this.handleLogin}  /> : <Redirect to="/index" />}/>   
                         <Route path="/profile" render={() => logic.loggedIn ? <Profile /> : <Redirect to="/login" />} />
-                        <Route path="/edit" render={() => logic.loggedIn ? <EditProfile onEditProfile={this.handleEditProfile} /> : <Redirect to="/login" />} />
+                        <Route path="/edit-profile" render={() => logic.loggedIn ? <EditProfile onEditProfile={this.handleEditProfile} /> : <Redirect to="/login" />} />
                    
                     </div> 
             </Provider>

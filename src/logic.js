@@ -153,8 +153,6 @@ const logic = {
     getCurrentUser() {
         let id = this._userId
 
-        console.log('user')
-
         if (typeof id !== 'string') throw new TypeError(`${id} is not a string`)
 
         if (!id.trim().length) throw Error('id is empty or blank')
@@ -182,7 +180,6 @@ const logic = {
         if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
         if (typeof newPassword !== 'string') throw TypeError(`${newPassword} is not a string`)
         if (typeof bio !== 'string') throw TypeError(`${bio} is not a string`)
-        if (typeof imgProfileUrl !== 'string') throw TypeError(`${imgProfileUrl} is not a string`)
 
 
         return fetch(`${this.url}/users/${this._userId}`, {

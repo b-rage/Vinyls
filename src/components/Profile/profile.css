@@ -8,9 +8,10 @@
 .profile-info{
     color: #2B3E50;
     font-size: 17px;
-    text-transform: capitalize;
 }
 
 .profile-img{
     width: 300px;
+    border-radius: 50%;
+    margin: 10px;
 }

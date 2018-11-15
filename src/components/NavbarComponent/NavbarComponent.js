@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem } from 'mdbreact'
 import logic from '../../logic'
 import { withRouter } from 'react-router-dom'
+import './navbarComponent.css'
+import Event from '../../plugins/bus'
 
 // Redux
 // import { connect } from 'react-redux'
@@ -22,6 +24,8 @@ class NavbarComponent extends Component {
         } catch (err) {
             this.setState({ error: err.message })
         }
+        Event.$on('change-profile-img', ({image}) => this.setState({...this.state, imgProfileUrl: image}))
+        
     }
 
 
@@ -32,13 +36,13 @@ class NavbarComponent extends Component {
    goToIndex = () => this.props.history.push('/index') 
     
    render() {
-       const { username } = this.state
+       const { username, imgProfileUrl } = this.state
        
     
        return (
            <Navbar color="black darken-4" dark expand="md"  scrolling>
 
-               <NavbarBrand href="/index">
+               <NavbarBrand >
 
                    <a onClick = { this.goToIndex } ><strong>Vinyls</strong></a>
 
@@ -50,9 +54,9 @@ class NavbarComponent extends Component {
 
                    <NavbarNav right>
 
-                       <NavItem >
+                       <NavItem onClick = { this.goToProfile } >
 
-                           <a className="nav-link waves-effect waves-light" onClick = { this.goToProfile } ><i className="fa fa-star"></i>{username}</a>
+                           <a className="nav-link waves-effect waves-light"  ><img className='img-profile-small' src={imgProfileUrl ? imgProfileUrl : './img/icon-profile.png'} ></img> {username}</a>
 
                        </NavItem >
 
