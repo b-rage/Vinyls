@@ -31,6 +31,7 @@ class App extends Component {
                 .then(() => {
                     this.setState({ error: null }, () => this.props.history.push('/profile'))
                     Event.$emit('change-profile-img', {image: imgProfileUrl})
+                    Event.$emit('change-profile-username', {username: username})
                 })
                 .catch(err => this.setState({ error: err.message }))
         } catch (err) {

@@ -9,7 +9,7 @@ class VinylListCardItem extends Component {
             
               <div className='card'>
                 <div className='card-image'>
-                  <img src={imageUrl}/>
+                  <img src={imageUrl} alt='vinyls'/>
                   <a href="#" className="float">
                     <i className="fa fa-plus my-float"></i>
                   </a>

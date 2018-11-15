@@ -25,6 +25,7 @@ class NavbarComponent extends Component {
             this.setState({ error: err.message })
         }
         Event.$on('change-profile-img', ({image}) => this.setState({...this.state, imgProfileUrl: image}))
+        Event.$on('change-profile-username', ({username}) => this.setState({...this.state, username: username}))
         
     }
 

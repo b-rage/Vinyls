@@ -122,6 +122,18 @@ const logic = {
         return res
     },
 
+    getUsers() {
+
+        return fetch(`${this.url}/users/`, {headers: { 'Authorization': `Bearer ${this._token}` }})
+            .then(res => res.json())
+            .then(res => {
+                
+                if (res.error) throw Error(res.error)
+                return res.data
+            })
+    },
+
+
 
     /**
      * 

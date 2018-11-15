@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { Button } from 'mdbreact'
 import logic from '../../logic'
 import './profile.css'
 
@@ -29,9 +30,9 @@ class Profile extends Component {
             <img className='profile-img' src={this.state.imgProfileUrl ? this.state.imgProfileUrl : './img/icon-profile.png'} ></img>
             <br></br>
 
-                <p className='profile-info'>username: {this.state.username}</p>
-                <p className='profile-info'>biography: {this.state.bio}</p>
-                <section><button className='btn-logout' onClick={this.handleEditClick}>Edit</button></section>
+                <p className='profile-username'> {this.state.username}</p>
+                <p className='profile-bio'>{this.state.bio}</p>
+                <section><Button color='black' onClick={this.handleEditClick}>Edit Profile</Button></section>
             
             
         </div>

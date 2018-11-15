@@ -20,9 +20,14 @@ class VinylsList extends Component {
         
         return ( 
             <React.Fragment>
-                <h2 className='text-center my-5'>Vinyls</h2>
+                {/* <h2 className='text-center my-5'>Vinyls</h2> */}
                 <div>
                     <UsersGallery></UsersGallery>
+                </div>
+                <div className='list-card'>
+                        {vinyls.map(vinyl => (
+                            <VinylListCardItem key={vinyl.id} info={vinyl}/>
+                        ))}
                 </div>
                 <div className='vinyls-list'>
                         <ul className='list-group-flush'>
@@ -30,11 +35,6 @@ class VinylsList extends Component {
                             <VinylListItem key={vinyl.id} info={vinyl}/>
                         ))}
                         </ul>
-                </div>
-                <div className='list-card'>
-                        {vinyls.map(vinyl => (
-                            <VinylListCardItem key={vinyl.id} info={vinyl}/>
-                        ))}
                 </div>
             </React.Fragment>
          )

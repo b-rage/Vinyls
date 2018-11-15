@@ -7,7 +7,7 @@ import './editProfile.css'
 
 
 class EditProfile extends Component {
-    state = { username: '', newPassword: '', password: '', imgProfileUrl: null, bio: '' }
+    state = { username: '', newPassword: '', password: '', imgProfileUrl: null, bio: '', error: null }
 
 
     componentDidMount() {
@@ -83,15 +83,17 @@ class EditProfile extends Component {
         const { username, newPassword, password, imgProfileUrl, bio } = this.state
 
         this.props.onEditProfile(username, newPassword, password, imgProfileUrl, bio)
+
+        this.setState({error: null})
      
     }
 
     render() {
         return <div className='edit-profile-container'>
+                <img className='profile-img' src={this.state.imgProfileUrl ? this.state.imgProfileUrl : './img/icon-profile.png'} ></img>
+                <br></br>
+                <Button type='button' onClick={this.uploadWidget} color='black' >Upload Image</Button>
                 <form className='form-edit-profile' onSubmit={this.handleSubmit}>
-
-                    <img className='profile-img' src={this.state.imgProfileUrl ? this.state.imgProfileUrl : './img/icon-profile.png'} ></img>
-                    <Button type='button' onClick={this.uploadWidget} className='btn-logout'>Add Image</Button>
                     <br></br>
                     <input className='input' type='text'  value={this.state.username} onChange={this.handleUsernameChange} />
                     <br></br>
@@ -99,11 +101,9 @@ class EditProfile extends Component {
                     <br></br>
                     <input className='input' type='password' placeholder='new password' onChange={this.handleNewPasswordChange} />
                     <br></br>
-                    <textarea className='text-area' type='text' value={this.state.bio} onChange={this.handleBioChange}></textarea>
+                    <textarea className='textarea' type='text' value={this.state.bio} onChange={this.handleBioChange}></textarea>
                     <br></br>
-                    <Button type='submit' className='btn-login2'>Confirm</Button> 
-                    <br></br>
-                    <a href='#' className='back' onClick={this.props.onGoBack}>back</a>
+                    <Button type='submit'color='black' >Save</Button> 
                 </form>
         </div>
     }

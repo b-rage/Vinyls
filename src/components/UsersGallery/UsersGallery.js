@@ -1,13 +1,29 @@
 import React, { Component } from 'react'
 import AliceCarousel from 'react-alice-carousel'
+import logic from '../../logic'
 import 'react-alice-carousel/lib/alice-carousel.css'
+import './usersGallery.css'
 
 class UsersGallery extends Component {  
+
+  state= { users: [], error: null }
+
   responsive = {
     0: { items: 4},
     600: { items: 8 },
     1024: { items: 12 }
   }
+
+  componentDidMount() {
+    try {       
+        
+        logic.getUsers()
+        .then(res => { this.setState({ users: res  }) })
+        .catch(err => this.setState({ error: err.message }))
+    } catch (err) {
+        this.setState({ error: err.message })
+    }
+}
   
   onSlideChange(e) {
     console.log('Item`s position during a change: ', e.item);
@@ -21,8 +37,8 @@ class UsersGallery extends Component {
   
   galleryItems() {
     return (
-      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, i) => (
-        <div key={`key-${i}`} className='yours-custom-class'><h2>{item}</h2></div>
+      this.state.users.map((item, i) => (
+        <div key={`key-${i}`} className='users-gallery'> <img className='users-gallery__img' src={item.imgProfileUrl ? item.imgProfileUrl : './img/icon-profile.png'} alt='users'></img> <h4 className='users-gallery__username'>{item.username}</h4></div>
       ))
     )
   };
